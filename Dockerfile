@@ -37,6 +37,9 @@ RUN apt-get update && apt-get install -y libmagickwand-6.q16-dev --no-install-re
     && pecl install imagick \
     && echo "extension=imagick.so" > /usr/local/etc/php/conf.d/ext-imagick.ini
 
+RUN usermod -u 1000 www-data
+RUN usermod -G staff www-data
+
 # Configure
 COPY php.ini /usr/local/etc/php/php.ini
 COPY php-fpm.conf /usr/local/etc/
